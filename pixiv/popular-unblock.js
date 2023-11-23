@@ -24,6 +24,7 @@ document.head.innerHTML += `<style>
 		flex: 1 !important;
 	}
 </style>`;
+
 let be = null;
 let be2 = null;
 let be3 = null;
