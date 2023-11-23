@@ -1,0 +1,12 @@
+name: Lint
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Install modules
+        run: yarn --dev
+      - name: Run Linters
+        run: yarn lint
