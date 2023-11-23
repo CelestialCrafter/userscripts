@@ -1,0 +1,22 @@
+{
+	"name": "userscripts",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"lint": "eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"eslint": "^8.53.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-disable": "^1.0.2",
+		"eslint-plugin-import": "^2.28.1",
+		"eslint-plugin-svelte": "^2.35.0",
+		"prettier": "^3.0.3",
+		"prettier-eslint": "^16.1.1",
+		"prettier-plugin-svelte": "^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.5.5",
+	},
+	"type": "module",
+}

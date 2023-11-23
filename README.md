@@ -6,3 +6,4 @@ Includes userscripts for:
 
 - Pixiv
 - Notion
+- AnimePahe
