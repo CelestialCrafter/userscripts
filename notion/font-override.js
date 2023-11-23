@@ -9,7 +9,6 @@
 // @grant        none
 // ==/UserScript==
 
-// eslint-disable-next-line strict, lines-around-directive
 'use strict';
 
 const fontSearchString = 'Lyon-Text, Georgia, ui-serif, serif';
