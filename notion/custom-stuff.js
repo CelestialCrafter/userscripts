@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Notion Custom
-// @namespace    https://celestial.sh/
+// @namespace    https://github.com/CelestialCrafter
 // @version      1.0.0
 // @description  Custom CSS and misclenaious scripts for Notion
 // @author       CelestialEXE

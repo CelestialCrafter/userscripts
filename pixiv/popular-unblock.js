@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Unblock Shown Popular Works
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/CelestialCrafter
 // @version      1.0
 // @description  Unblocks the shown popular works on pixiv
 // @author       You

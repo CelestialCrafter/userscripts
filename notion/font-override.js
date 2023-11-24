@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Notion Font Override
-// @namespace    https://celestial.sh/
+// @namespace    https://github.com/CelestialCrafter
 // @version      1.0.0
 // @description  Overrides Notions font
 // @author       CelestialEXE

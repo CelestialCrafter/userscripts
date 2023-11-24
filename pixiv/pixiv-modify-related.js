@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Pixiv Relative Sidebar
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/CelestialCrafter
 // @version      0.1
 // @description  Removes the Relative images row from the main section to sidebar to be less intrusive
 // @author       You
@@ -46,3 +46,8 @@ document.head.innerHTML += `<style>
 		display: none !important;
 	}
 </style>`;
+
+document.onclick = event => {
+	const relatives = Array.from(document.getElementsByClassName('dSVJt'));
+	relatives.forEach((el, i) => el.style.display = i == relatives.length - 1 ? 'grid' : 'none');
+};

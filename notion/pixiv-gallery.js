@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Notion Pixiv Following Gallery
-// @namespace    https://celestial.sh/
+// @namespace    https://github.com/CelestialCrafter
 // @version      1.0.0
 // @description  Loads my Pixiv Following posts on Notion
 // @author       CelestialEXE
