@@ -59,14 +59,17 @@ const hookButtons = update => {
 	};
 };
 
-const fetchURLs = () => new Promise(res => {
-	// eslint-disable-next-line no-undef
-	GM_xmlhttpRequest({
-		method: 'GET',
-		url: `${serverURL}/following?page=${page}${r18Checkbox?.checked ? '&r18=true' : ''}&authKey=${authKey}`,
-		onload: response => res(JSON.parse(response.responseText))
+const fetchURLs = () =>
+	new Promise(res => {
+		// eslint-disable-next-line no-undef
+		GM_xmlhttpRequest({
+			method: 'GET',
+			url: `${serverURL}/following?page=${page}${
+				r18Checkbox?.checked ? '&r18=true' : ''
+			}&authKey=${authKey}`,
+			onload: response => res(JSON.parse(response.responseText))
+		});
 	});
-});
 
 const updateImages = async (firstTime = true) => {
 	let urls = [];
@@ -76,27 +79,33 @@ const updateImages = async (firstTime = true) => {
 	let previousResults;
 
 	if (firstTime) {
-		getImageElements = () => document.querySelectorAll(`[data-block-id="${galleryDataId}"] .notion-image-block img`);
+		getImageElements = () =>
+			document.querySelectorAll(`[data-block-id="${galleryDataId}"] .notion-image-block img`);
 		results = getImageElements();
 		let timer = null;
 
-		if (results.length < 6) await new Promise(res => {
-			timer = setInterval(() => {
-				results = getImageElements();
-				if (results[0]) authKey = document.querySelector(`[data-block-id="${authKeyId}"] .notranslate`).innerText;
-				if (results.length >= 6) {
-					clearInterval(timer);
-					res();
-				}
-			}, 500);
-		});
+		if (results.length < 6)
+			await new Promise(res => {
+				timer = setInterval(() => {
+					results = getImageElements();
+					if (results[0])
+						authKey = document.querySelector(
+							`[data-block-id="${authKeyId}"] .notranslate`
+						).innerText;
+					if (results.length >= 6) {
+						clearInterval(timer);
+						res();
+					}
+				}, 500);
+			});
 
 		results.forEach(element => {
 			const node = element.cloneNode();
 			node.classList.add('cloned');
 			node.style.display = 'none';
 			element.parentElement.appendChild(node);
-			element.closest('.notion-column-block').parentElement.style.width = 'calc(100% / 6 - (24px * 5 / 6))';
+			element.closest('.notion-column-block').parentElement.style.width =
+				'calc(100% / 6 - (24px * 5 / 6))';
 		});
 
 		previousResults = results;
@@ -104,20 +113,27 @@ const updateImages = async (firstTime = true) => {
 
 	urls = await fetchURLs();
 
-	getImageElements = () => Array.from(document.querySelectorAll(`[data-block-id="${galleryDataId}"] .notion-image-block .cloned`));
+	getImageElements = () =>
+		Array.from(
+			document.querySelectorAll(`[data-block-id="${galleryDataId}"] .notion-image-block .cloned`)
+		);
 	results = getImageElements();
 	if (!firstTime) previousResults = results;
 	let lastWorkingUrl = null;
 
-	await Promise.all(results.map((element, i) => {
-		if (urls[i]) lastWorkingUrl = urls[i];
-		const url = `https://notionpixivgalleryserver.celestialcrafte.repl.co/imgproxy?url=${encodeURIComponent(lastWorkingUrl)}&authKey=${authKey}`;
-		element.setAttribute('src', url);
-		return new Promise(res => {
-			element.onload = () => (element.complete ? res() : null);
-			element.onerror = res;
-		});
-	}));
+	await Promise.all(
+		results.map((element, i) => {
+			if (urls[i]) lastWorkingUrl = urls[i];
+			const url = `https://notionpixivgalleryserver.celestialcrafte.repl.co/imgproxy?url=${encodeURIComponent(
+				lastWorkingUrl
+			)}&authKey=${authKey}`;
+			element.setAttribute('src', url);
+			return new Promise(res => {
+				element.onload = () => (element.complete ? res() : null);
+				element.onerror = res;
+			});
+		})
+	);
 
 	if (!initialLoad) hookButtons(updateImages);
 	initialLoad = true;

@@ -37,5 +37,6 @@ document.addEventListener('keydown', event => {
 			}
 			</style>
 		`;
-	} else if (event.key === ',') Array.from(document.getElementsByClassName('zenmode')).forEach(el => el.remove());
+	} else if (event.key === ',')
+		Array.from(document.getElementsByClassName('zenmode')).forEach(el => el.remove());
 });

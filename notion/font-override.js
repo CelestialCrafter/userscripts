@@ -19,7 +19,8 @@ const searchFontFamily = () => {
 	const elementsWithMatchingFontFamily = [];
 
 	const traverseDOM = element => {
-		if (element.style?.fontFamily === fontSearchString) elementsWithMatchingFontFamily.push(element);
+		if (element.style?.fontFamily === fontSearchString)
+			elementsWithMatchingFontFamily.push(element);
 
 		const children = Array.from(element.childNodes);
 		children.forEach(traverseDOM);
@@ -36,18 +37,22 @@ const documentChanged = async () => {
 	const matchingElements = () => searchFontFamily();
 	let results = matchingElements();
 
-	if (!results[0]) await new Promise(res => {
-		timer = setInterval(() => {
-			results = matchingElements();
-			if (results[0]) {
-				clearInterval(timer);
-				res();
-			}
-		}, 500);
-	});
+	if (!results[0])
+		await new Promise(res => {
+			timer = setInterval(() => {
+				results = matchingElements();
+				if (results[0]) {
+					clearInterval(timer);
+					res();
+				}
+			}, 500);
+		});
 
 	// eslint-disable-next-line no-param-reassign
-	const runChange = () => results.forEach(element => { element.style.fontFamily = fontReplaceString; });
+	const runChange = () =>
+		results.forEach(element => {
+			element.style.fontFamily = fontReplaceString;
+		});
 
 	setInterval(() => {
 		results = matchingElements();
