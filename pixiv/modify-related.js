@@ -45,3 +45,5 @@ style.innerHTML = `.hvDgE {
 		display: none !important;
 	}
 `;
+
+document.head.appendChild(style);
