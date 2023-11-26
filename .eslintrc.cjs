@@ -1,19 +1,19 @@
+'use strict';
+
 const baseConfig = {
 	root: true,
-	globals: {
-		BigInt: true
-	},
 	env: {
-		node: true,
-		browser: true
+		browser: true,
+		greasemonkey: true
 	},
-	extends: ['airbnb-base', 'prettier', 'plugin:svelte/recommended', 'plugin:svelte/prettier'],
+	extends: ['airbnb-base', 'prettier'],
 	plugins: [],
 	parserOptions: {
 		ecmaVersion: 'latest',
-		sourceType: 'module'
+		sourceType: 'script'
 	},
 	rules: {
+		strict: ['error', 'global'],
 		'no-restricted-globals': 'off',
 		'no-underscore-dangle': 'off',
 		'no-empty': [

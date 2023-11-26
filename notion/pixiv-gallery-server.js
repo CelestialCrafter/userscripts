@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
@@ -24,24 +26,30 @@ app.get('/following', async (req, res) => {
 	const { r18, page } = req.query;
 	const modifiedPage = Math.min(9, Math.max(0, page));
 
-	const { data: { body: { thumbnails: { illust: illusts } } } } = await axios(
-		{
-			url: 'https://www.pixiv.net/ajax/follow_latest/illust?p=1&mode=all&lang=en',
-			method: 'get',
-			headers
+	const {
+		data: {
+			body: {
+				thumbnails: { illust: illusts }
+			}
 		}
-	);
+	} = await axios({
+		url: 'https://www.pixiv.net/ajax/follow_latest/illust?p=1&mode=all&lang=en',
+		method: 'get',
+		headers
+	});
 
 	res.json(
 		illusts
 			.filter(({ xRestrict }) => (r18 ? true : xRestrict === 0))
-			.filter(({ width, height }) => (height * 0.8) - width > 0)
+			.filter(({ width, height }) => height * 0.8 - width > 0)
 			.slice(modifiedPage * 6, modifiedPage * 6 + 6)
-			.map(({ url }) => url
-				.replace(/c\/250x250_80_a2\//, '')
-				.replace('_square1200', '_master1200')
-				.replace('_custom1200', '_master1200')
-				.replace('custom-thumb', 'img-master'))
+			.map(({ url }) =>
+				url
+					.replace(/c\/250x250_80_a2\//, '')
+					.replace('_square1200', '_master1200')
+					.replace('_custom1200', '_master1200')
+					.replace('custom-thumb', 'img-master')
+			)
 	);
 });
 

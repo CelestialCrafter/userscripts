@@ -1,13 +1,15 @@
 // ==UserScript==
 // @name         Unblock Shown Popular Works
 // @namespace    https://github.com/CelestialCrafter
-// @version      1.0
+// @version      1.0.0
 // @description  Unblocks the shown popular works on pixiv
-// @author       You
+// @author       CelestialEXE
 // @match        https://www.pixiv.net/en/tags/**/artworks
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=pixiv.net
 // @grant        none
 // ==/UserScript==
+
+'use strict';
 
 document.head.innerHTML += `<style>
 	.eGQovZ {
@@ -34,7 +36,7 @@ const debounce = (fn, timeout = 300) => {
 	return (...args) => {
 		if (!timer) fn.apply(this, args);
 		clearTimeout(timer);
-		timer = setTimeout(() => timer = null, timeout);
+		timer = setTimeout(() => (timer = null), timeout);
 	};
 };
 
