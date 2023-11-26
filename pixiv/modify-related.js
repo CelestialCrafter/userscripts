@@ -20,9 +20,10 @@ style.innerHTML = `.hvDgE {
 	.dSVJt {
 		position: fixed !important;
 		z-index: 1 !important;
-		background-color: initial !important;
 		top: 0 !important;
 		padding-top: 0 !important;
+		margin-top: 0 !important;
+		background-color: var(--charcoal-surface1);
 	}
 
 	.hLhHDu {
