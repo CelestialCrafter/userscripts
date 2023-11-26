@@ -11,8 +11,8 @@
 
 'use strict';
 
-document.head.innerHTML += `<style>
-	.eGQovZ {
+const style = document.createElement('style');
+style.innerHTML = `.eGQovZ {
 		width: 184px !important;
 		height: 184px !important;
 	}
@@ -25,7 +25,9 @@ document.head.innerHTML += `<style>
 	.chUwBg {
 		flex: 1 !important;
 	}
-</style>`;
+`;
+
+document.head.appendChild(style);
 
 let be = null;
 let be2 = null;

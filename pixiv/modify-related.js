@@ -11,8 +11,8 @@
 
 'use strict';
 
-document.head.innerHTML += `<style>
-	.hvDgE {
+const style = document.createElement('style');
+style.innerHTML = `.hvDgE {
 		padding: 1rem !important;
 		border-right: 1px solid dimgray;
 	}
@@ -44,4 +44,4 @@ document.head.innerHTML += `<style>
 	.dSVJt .JYkwH, .dSVJt .ioeugW, .dSVJt .FIoEP, .dSVJt:first-child, .kqssbN {
 		display: none !important;
 	}
-</style>`;
+`;
