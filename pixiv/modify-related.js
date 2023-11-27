@@ -12,7 +12,7 @@
 'use strict';
 
 const style = document.createElement('style');
-style.innerHTML = `.hvDgE {
+style.innerHTML = `.kSViUo {
 		padding: 1rem !important;
 		border-right: 1px solid dimgray;
 	}
