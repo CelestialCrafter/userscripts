@@ -48,10 +48,10 @@ const documentChanged = async () => {
 			}, 500);
 		});
 
-	
-	const runChange = () => results.forEach(element => {
+	const runChange = () =>
+		results.forEach(element => {
 			// eslint-disable-next-line no-param-reassign
-			element.style.fontFamily = fontReplaceString
+			element.style.fontFamily = fontReplaceString;
 		});
 
 	setInterval(() => {
