@@ -48,9 +48,11 @@ const documentChanged = async () => {
 			}, 500);
 		});
 
-	// eslint-disable-next-line no-param-reassign
-	const runChange = () =>
-		results.forEach(element => (element.style.fontFamily = fontReplaceString));
+	
+	const runChange = () => results.forEach(element => {
+			// eslint-disable-next-line no-param-reassign
+			element.style.fontFamily = fontReplaceString
+		});
 
 	setInterval(() => {
 		results = matchingElements();
