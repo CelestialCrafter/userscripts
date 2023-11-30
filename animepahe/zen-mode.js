@@ -12,8 +12,7 @@
 'use strict';
 
 document.addEventListener('keydown', event => {
-	if (event.key === '.') {
-		document.head.innerHTML += `
+	if (event.key === '.') document.head.innerHTML += `
 			<style class="zenmode">
 			.main-header, .theatre-settings, .theatre-info, .open-info-popup {
 				display: none !important;
@@ -37,6 +36,6 @@ document.addEventListener('keydown', event => {
 			}
 			</style>
 		`;
-	} else if (event.key === ',')
+	else if (event.key === ',')
 		Array.from(document.getElementsByClassName('zenmode')).forEach(el => el.remove());
 });
