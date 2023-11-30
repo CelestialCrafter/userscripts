@@ -12,7 +12,8 @@
 'use strict';
 
 document.addEventListener('keydown', event => {
-	if (event.key === '.') document.head.innerHTML += `
+	if (event.key === '.')
+		document.head.innerHTML += `
 			<style class="zenmode">
 			.main-header, .theatre-settings, .theatre-info, .open-info-popup {
 				display: none !important;
