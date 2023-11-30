@@ -49,10 +49,7 @@ const documentChanged = async () => {
 		});
 
 	// eslint-disable-next-line no-param-reassign
-	const runChange = () =>
-		results.forEach(element => {
-			element.style.fontFamily = fontReplaceString;
-		});
+	const runChange = () => results.forEach(element => element.style.fontFamily = fontReplaceString);
 
 	setInterval(() => {
 		results = matchingElements();
