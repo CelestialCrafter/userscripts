@@ -70,17 +70,26 @@ window.addEventListener('contextmenu', event => {
 		post?.dataset.gtmValue ||
 		document.querySelector('link[rel="canonical"]')?.attributes.href.value.split('artworks/')[1];
 
-	if (event.altKey) event.preventDefault();
+	if (event.altKey || event.ctrlKey) event.preventDefault();
 	else return;
 	if (!id) return;
 
 	const clone = contextMenu.cloneNode(true);
 	clone.style.left = `${event.pageX}px`;
 	clone.style.top = `${event.pageY}px`;
+    if (event.ctrlKey) {
+    const imgUrl = "https://i.pximg.net/img-master/" + post.querySelector('img').src.match(/img\/\d{4}.+jpg/)[0].replace('square', 'master')
 	clone.innerHTML = `
-		<button onClick="likePrivate(${id}, false)">Like Private</button>
-		<button onClick="likePrivate(${id}, true)">Like Private R18</button>
-	`;
+        <object data="${imgUrl.replace('master', 'original').replace('_custom1200', '')}" type="image/png" style="width: 20vw;">
+	    	<img src="${imgUrl}" style="width: 20vw; border: 1px solid red;"/>
+        </object>
+	    `;
+    } else {
+        clone.innerHTML = `
+		    <button onClick="likePrivate(${id}, false)">Like Private</button>
+		    <button onClick="likePrivate(${id}, true)">Like Private R18</button>
+	    `;
+    }
 	document.body.appendChild(clone);
 });
 
@@ -92,7 +101,7 @@ unsafeWindow.likePrivate = async (id, r18) => {
 			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json',
-				'x-csrf-token': 'd3c8e82853770ad9bd2c738759d09e8b'
+				'x-csrf-token': '8296a51253f3084ce28c74294e1c9a5c'
 			},
 			body: JSON.stringify({
 				illust_id: id.toString(),
@@ -117,7 +126,7 @@ unsafeWindow.likePrivate = async (id, r18) => {
 				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
-					'x-csrf-token': 'd3c8e82853770ad9bd2c738759d09e8b'
+					'x-csrf-token': '8296a51253f3084ce28c74294e1c9a5c'
 				},
 				body: `bookmark_id=${response.body.last_bookmark_id}`,
 				method: 'POST'
