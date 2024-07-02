@@ -77,21 +77,31 @@ window.addEventListener('contextmenu', event => {
 	const clone = contextMenu.cloneNode(true);
 	clone.style.left = `${event.pageX}px`;
 	clone.style.top = `${event.pageY}px`;
-    if (event.ctrlKey) {
-    const imgUrl = "https://i.pximg.net/img-master/" + post.querySelector('img').src.match(/img\/\d{4}.+jpg/)[0].replace('square', 'master')
-	clone.innerHTML = `
-        <object data="${imgUrl.replace('master', 'original').replace('_custom1200', '').replace('jpg', 'png')}" type="image/png" style="width: 20vw;">
-            <object data="${imgUrl.replace('master', 'original').replace('_custom1200', '')}" type="image/jpeg" style="width: 20vw;">
+	if (event.ctrlKey) {
+		const imgUrl =
+			'https://i.pximg.net/img-master/' +
+			post
+				.querySelector('img')
+				.src.match(/img\/\d{4}.+jpg/)[0]
+				.replace('square', 'master');
+		clone.innerHTML = `
+        <object data="${imgUrl
+					.replace('master', 'original')
+					.replace('_custom1200', '')
+					.replace('jpg', 'png')}" type="image/png" style="width: 20vw;">
+            <object data="${imgUrl
+							.replace('master', 'original')
+							.replace('_custom1200', '')}" type="image/jpeg" style="width: 20vw;">
 	    	    <img src="${imgUrl}" style="width: 20vw; border: 1px solid red;"/>
             </object>
         </object>
 	    `;
-    } else {
-        clone.innerHTML = `
+	} else {
+		clone.innerHTML = `
 		    <button onClick="likePrivate(${id}, false)">Like Private</button>
 		    <button onClick="likePrivate(${id}, true)">Like Private R18</button>
 	    `;
-    }
+	}
 	document.body.appendChild(clone);
 });
 
